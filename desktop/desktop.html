@@ -1,5 +1,64 @@
 <script type="text/discourse-plugin" version="0.8">
   const container = Discourse.__container__;
   const { ajax } = require("discourse/lib/ajax");
-  
-  </script>
+  navigationTab = [{
+    name:'Announcement',
+    header:'Announcement',
+    description:'Get the latest new here...'
+    },
+    {
+      name:'Discussion',
+      header:'Discussion Forum',
+      description:'Be a part of various conversations...'
+  },
+  {
+    name:'Blogs',
+    tabHeader:'Blogs',
+    description:'Read Articles Authored by experts...'
+    {
+      name:'Support',
+      header:'Help & Support',
+      description:'Find Answers to your questions...'
+    }];
+
+  api.registerConnectorClass('below-site-header', 'abb-navigation-tabs', {
+    tagName: "div.abb-navigation-tabs",
+    setupComponent(args, component) {
+
+
+      component.set('hostname', window.location.hostname);
+      api.onPageChange((url) => {
+        component.set("navigationTabDetails",navigationTab)
+      })
+    }
+  });
+</script>
+
+<script
+  type="text/x-handlebars"
+  data-template-name="/connectors/below-site-header/abb-navigation-tabs"
+>
+<div class="abb-navigation-container">
+  <div class="nav-content">
+      <span class="digital-content">
+    <a class="digital-talks-header" href='/'>{{i18n (theme-prefix "sidebar.community")}}</a>
+      <span class="vertical-line sec-nav-vline ie-brand-vline"></span>
+      <span class="browse-text-header">
+      <a href='/categories'>{{i18n (theme-prefix "sidebar.categories")}}</a>
+      </span>
+      <span class="browse-text-header">
+      <a  href='/c/announcements/5'>{{i18n (theme-prefix "sidebar.announcement")}}</a>
+      </span>
+      <span class="browse-text-header">
+      <a  href='/c/discussion/7'>{{i18n (theme-prefix "sidebar.discussion")}}</a>
+      </span>
+      </span>
+  </div>
+</div>
+
+</script>
+<script>
+  Ember.Handlebars.registerHelper("test", function () {
+    return `test`;
+  });
+</script>
