@@ -24,8 +24,6 @@
   api.registerConnectorClass('above-main-container', 'abb-navigation-tabs', {
     tagName: "div.abb-navigation-tabs",
     setupComponent(args, component) {
-
-
       component.set('hostname', window.location.hostname);
       api.onPageChange((url) => {
         component.set("navigationTabDetails",navigationTab)
